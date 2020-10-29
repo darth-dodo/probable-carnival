@@ -392,6 +392,14 @@ toml = "*"
 virtualenv = ">=20.0.8"
 
 [[package]]
+name = "precommit"
+version = "0.1.1"
+description = "A package to prevent exploit"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "prompt-toolkit"
 version = "3.0.8"
 description = "Library for building powerful interactive command lines in Python"
@@ -590,7 +598,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "ea0cef3d28592c3f7d88d4e072ed18c4bd14a990891a8d0988f0b96cae03ddd5"
+content-hash = "6d2efcf04bc22abbece59962896b1cdb79f773589bf22945e4502a4bdf310b38"
 
 [metadata.files]
 aiohttp = [
@@ -814,6 +822,9 @@ pluggy = [
 pre-commit = [
     {file = "pre_commit-2.8.1-py2.py3-none-any.whl", hash = "sha256:7eadaa7f4547a8a19b83230ce430ba81bbe4797bd41c8d7fb54b246164628d1f"},
     {file = "pre_commit-2.8.1.tar.gz", hash = "sha256:8fb2037c404ef8c87125e72564f316cf2bc94fc9c1cb184b8352117de747e164"},
+]
+precommit = [
+    {file = "precommit-0.1.1.tar.gz", hash = "sha256:b0a4d47045db0fd23a2999113a93a7de510f567ea8d989360209248cdf0856d1"},
 ]
 prompt-toolkit = [
     {file = "prompt_toolkit-3.0.8-py3-none-any.whl", hash = "sha256:7debb9a521e0b1ee7d2fe96ee4bd60ef03c6492784de0547337ca4433e46aa63"},
