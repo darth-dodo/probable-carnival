@@ -41,3 +41,25 @@ async def init_pg(app):
 async def close_pg(app):
     app["db"].close()
     await app["db"].wait_closed()
+
+
+async def get_question(conn, question_id):
+    result = await conn.execute(question.select().where(question.c.id == question_id))
+
+    question_record = await result.first()
+
+    if not question_record:
+        msg = "Question with id: {} does not exist"
+        raise RecordNotFound(msg.format(question_id))
+
+    result = await conn.execute(
+        choice.select().where(choice.c.question_id == question_id).order_by(choice.c.id)
+    )
+
+    choice_records = await result.fetchall()
+
+    return question_record, choice_records
+
+
+class RecordNotFound(Exception):
+    """Requested record in database was not found"""
