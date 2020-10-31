@@ -3,11 +3,13 @@
 {% set title = question.question_text %}
 
 {% block content %}
-<ul>
-{% for choice in choices %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote(s)</li>
-{% endfor %}
-</ul>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<a href="{{ url('poll', question_id=question.id) }}">Vote again?</a>
+<form action="{{ url('vote', question_id=question.id) }}" method="post">
+{% for choice in choices %}
+    <input type="radio" name="choice" id="choice{{ loop.index }}" value="{{ choice.id }}" />
+    <label for="choice{{ loop.index }}">{{ choice.choice_text }}</label><br />
+{% endfor %}
+<input type="submit" value="Vote" />
+</form>
 {% endblock %}
