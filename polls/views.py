@@ -24,3 +24,16 @@ async def poll(request):
             raise web.HTTPNotFound(text=str(e))
 
         return {"question": question, "choices": choices}
+
+
+@aiohttp_jinja2.template("results.html")
+async def results(request):
+    async with request.app["db"].acquire() as conn:
+        question_id = request.match_info["question_id"]
+
+        try:
+            question, choices = await db.get_question(conn, question_id)
+        except db.RecordNotFound as e:
+            raise web.HTTPNotFound(text=str(e))
+
+        return {"question": question, "choices": choices}
